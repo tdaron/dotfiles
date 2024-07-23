@@ -1,0 +1,33 @@
+theme = "new_moon"
+[editor]
+rulers = [80, 120]
+mouse = true
+true-color=true
+line-number="relative"
+bufferline = "always"
+
+[editor.cursor-shape]
+insert = "bar"
+normal = "block"
+select = "underline"
+
+[keys.normal]
+# Use system clipboard
+y = "yank_main_selection_to_clipboard"
+p = "paste_clipboard_before"
+d = ["yank_main_selection_to_clipboard", "delete_selection"]
+C-t = ["extend_to_line_bounds", ":pipe sh hx_exec.sh 2>&1","collapse_selection"]
+C-r = ":reload"
+C-k = ["extend_to_line_bounds", ":pipe-to python /home/theo/Workspace/neptune/client.py"]
+[keys.select]
+C-k = ["extend_to_line_bounds", ":pipe-to python /home/theo/Workspace/neptune/client.py"]
+[keys.normal."backspace"]
+f = ":fmt"
+R = ":sh z_open 'just run'"
+F = ':sh zellij run -fc --height 90% --width 90% -x 5% -y 5% -- nnn $PWD'
+[keys.normal.t]
+d = [":insert-output echo -n '- [ ] '","collapse_selection"]
+
+[keys.insert]
+C-u = ["extend_to_line_bounds", ":pipe xargs r_nap", "collapse_selection",":format"]
+C-e = ["extend_to_line_bounds", ":pipe emmet", "collapse_selection",":format"]

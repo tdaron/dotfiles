@@ -1,0 +1,15 @@
+[[language]]
+name = "html"
+auto-format = true
+formatter = { command = 'prettier', args = ["--parser", "html"] }
+indent = { tab-width = 4, unit = "    " }
+[[language]]
+name = "javascript"
+formatter = { command = 'prettier', args = ["--parser", "typescript"] }
+auto-format = true
+
+[[language]]
+name = "markdown-plus"
+scope = "text.markdown-plus"
+file-types = ["mdp"]
+grammar = "markdown"
