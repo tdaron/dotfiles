@@ -75,3 +75,8 @@ blue = "#89b4fa"
 magenta = "#f5c2e7"
 cyan = "#94e2d5"
 white = "#bac2de"
+
+[cursor.style]
+shape="Beam"
+[cursor.vi_mode_style]
+shape="Beam"
