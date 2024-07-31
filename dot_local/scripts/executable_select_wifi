@@ -1,0 +1,28 @@
+#!/bin/bash
+
+list=$(nmcli -f ssid,in-use,signal,bars device wifi)
+# Extract the first line
+first_line=$(echo "$list" | head -n 1)
+
+# Extract the rest of the lines
+rest_lines=$(echo "$list" | tail -n +2)
+result=$(echo "$rest_lines" | rofi -theme squared-nord -p "Enter SSID: " -dmenu -mesg "$first_line")
+ssid=$(echo "$result" | awk "{print \$1}")
+if [ -z $ssid ]
+then
+exit
+fi
+nmcli device wifi connect "$ssid"
+if [ ! $? -eq 0 ]
+then
+pwd=$(rofi -theme squared-nord -dmenu -p "Enter wifi password: ")
+r=$(nmcli device wifi connect "$ssid" password "$pwd" )
+if [ ! $? -eq 0 ]
+then
+notify-send "Invalid password"
+else
+notify-send "Connected to $ssid"
+fi
+else
+notify-send "Connected to $ssid"
+fi

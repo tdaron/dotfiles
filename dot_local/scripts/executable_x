@@ -1,0 +1,16 @@
+#!/bin/bash
+
+# Check if any arguments are passed
+if [ $# -eq 0 ]; then
+  echo "Usage: $0 <command>"
+  exit 1
+fi
+
+# Infinite loop
+while true; do
+  # Execute the command passed as arguments
+  "$@"
+  # Wait for user to press Enter
+  read -p "Press Enter to run the command again..."
+  clear
+done

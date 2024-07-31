@@ -1,0 +1,8 @@
+#!/bin/bash
+
+selected=$(fd --type f "" ~ ~/.config ~/.local | fzf)
+if [ -n "$selected" ]; then
+    parent_dir=$(dirname "$selected")
+    cd "$parent_dir"
+    hx "$selected"
+fi

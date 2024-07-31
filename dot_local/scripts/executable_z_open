@@ -1,0 +1,23 @@
+#!/usr/bin/nu
+
+def main [-f,-c,-p, command] {
+  mut args = [];
+  mut cmd = $command
+  let name = $cmd | sha1sum | str substring 0..5
+  mut opt = ["--direction", "right"]
+  if ($f) {
+    $args = ($args | append "-f");
+    $opt = []
+  }
+  if ($c) {
+    $args = ($args | append "-c");
+  }
+  if ($p) {
+    let tmp_file = (mktemp -p /tmp);
+    echo $tmp_file
+    cat | save -f $tmp_file;
+    $cmd = ([$cmd,"<",$tmp_file] | str join " ");
+  }
+  zellij run --name $name ...$opt ...$args -- bash -c $'($cmd)'
+}
+

@@ -23,11 +23,13 @@ C-k = ["extend_to_line_bounds", ":pipe-to python /home/theo/Workspace/neptune/cl
 C-k = ["extend_to_line_bounds", ":pipe-to python /home/theo/Workspace/neptune/client.py"]
 [keys.normal."backspace"]
 f = ":fmt"
-R = ":sh z_open 'just run'"
-F = ':sh zellij run -fc --height 90% --width 90% -x 5% -y 5% -- nnn $PWD'
+R = ":sh tx x just run"
+F = ':sh float nnn $PWD'
+d = ':sh echo %sh{echo cool %{linenumber}} %{filename} toto cool'
+B = ":sh echo '%sh{echo '%{filename}'}'"
+D = ":buffer-close"
 [keys.normal.t]
 d = [":insert-output echo -n '- [ ] '","collapse_selection"]
-
 [keys.insert]
 C-u = ["extend_to_line_bounds", ":pipe xargs r_nap", "collapse_selection",":format"]
 C-e = ["extend_to_line_bounds", ":pipe emmet", "collapse_selection",":format"]

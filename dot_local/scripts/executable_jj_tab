@@ -1,0 +1,5 @@
+#!/bin/bash
+name=$(jj log -r "@" -T "description" --no-graph)
+if [ -n "$name" ]; then
+    zellij action rename-pane $name
+fi

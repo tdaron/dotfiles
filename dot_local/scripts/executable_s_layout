@@ -1,0 +1,3 @@
+#!/bin/sh
+$(~/.screenlayout/$(ls ~/.screenlayout/ | sed 's/\.sh$//' | rofi -dmenu).sh)
+set_bg

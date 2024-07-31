@@ -1,0 +1,17 @@
+#!/bin/sh
+curl -H "Content-Type: application/json" \
+-H "Authorization: Bearer fa6080ae1b53ff0b8b285a29cd669bed97a81ee71f5015e97b6f2d9377825e03" \
+-X POST -d '{
+    "authorized_users": [
+        "tdaron"
+    ],
+    "backups_enabled": false,
+    "booted": true,
+    "image": "linode/arch",
+    "label": "arch-fr-par",
+    "private_ip": false,
+    "region": "fr-par",
+    "root_pass": "fa6080ae1b53ff0b8b285a29cd669bed97a81ee71f5015e97b6f2d9377825e03",
+    "tags": [],
+    "type": "g6-dedicated-2"
+}' https://api.linode.com/v4/linode/instances

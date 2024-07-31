@@ -1,0 +1,7 @@
+#!/bin/sh
+
+# Combine all the arguments into a single string
+args="$*"
+
+# Execute the fish command with the combined arguments
+tmux popup -d $PWD /bin/fish -c "$args"

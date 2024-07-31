@@ -1,0 +1,46 @@
+#!/bin/sh
+function middle() {
+  # 6 février 2024 - 18h51
+  date +"%e %B %Y - %H:%M"
+}
+
+function get_wifi() {
+  ssid=$(nmcli -t -f in-use,ssid device wifi | grep "*" | cut -d":" -f2)
+  ip=$(ifconfig wlan0 | awk '$1 == "inet" {print $2}')
+  if [ ! -z "$ssid" ]
+  then
+  ssid="Wifi: $ssid"
+  else
+  echo "Not connected."
+  return
+  fi
+  echo "$ssid@$ip"
+}
+
+function right() {
+  battery=$(cat /sys/class/power_supply/BAT0/capacity)
+  state=$(cat /sys/class/power_supply/BAT0/status)
+  wifi=$(get_wifi)
+  if [ "$state" != "Charging" ]; then
+    state=""
+  else
+    state="($state)"
+  fi
+  echo "$wifi -  $battery% $state"
+}
+
+
+
+
+function update() {
+  MIDDLE=$(middle)
+  RIGHT=$(right)
+  xsetroot -name "$MIDDLE;$RIGHT" 
+}
+
+
+while true; do
+    update
+    sleep 3
+done
+

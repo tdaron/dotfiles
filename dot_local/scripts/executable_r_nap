@@ -1,0 +1,19 @@
+#!/usr/bin/nu
+def main [...args] {
+  if ($args | is-empty) {
+    print "Not enough arguments"
+    print "Usage: nu_nap <snippet> <arg1> <arg2>"
+    print "(args are fully optionnals)"
+    exit 1
+  }
+  mut value = (nap $args.0)
+  let index = 0;
+  for arg in ($args | enumerate) {
+    if ($arg.index == 0) {continue}
+    let item = $arg.item | into string
+    #This into string is to avoid numbers infer with str downcase
+    $value = ($value | str replace -a $"$($arg.index)" $"($item)")
+    $value = ($value | str replace -a $"$l($arg.index)" $"($item | str downcase)")
+  }
+  print $value
+}

@@ -1,0 +1,12 @@
+#!/bin/sh
+
+# Get the selected layout from rofi
+selected_layout=$(echo -e 'fr azerty\nbe' | rofi -dmenu)
+
+# Set the keyboard layout using setxkbmap
+setxkbmap $selected_layout
+
+# If the selected layout is "fr azerty", apply the Xmodmap configuration
+if [ "$selected_layout" = "fr azerty" ]; then
+    xmodmap ~/.Xmodmap-fr-azerty
+fi
