@@ -10,7 +10,7 @@ super + L
 	betterlockscreen -l #lock screen
 
 super + z
-	/home/theo/.local/scripts/select_wifi
+	/home/{{ .chezmoi.username }}/.local/scripts/select_wifi
 
 XF86Audio{Mute,RaiseVolume,LowerVolume}
 	amixer set Master {toogle, 5%+,5%-} && show_volume
