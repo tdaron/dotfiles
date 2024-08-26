@@ -1,0 +1,21 @@
+#! /bin/bash
+
+# wm independent hotkeys
+
+# make sxhkd reload its configuration files:
+super + Escape
+	pkill -USR1 -x sxhkd
+
+super + L
+	betterlockscreen -l #lock screen
+
+super + z
+	/home/theo/.local/scripts/select_wifi
+
+XF86Audio{Mute,RaiseVolume,LowerVolume}
+	amixer set Master {toogle, 5%+,5%-} && show_volume
+XF86MonBrightness{Down,Up}
+	brightnessctl s {10%-,10%+}
+
+@Print
+	flameshot gui
